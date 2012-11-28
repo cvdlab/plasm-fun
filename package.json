@@ -1,5 +1,5 @@
 {
-  "name": "plasm-fun",
+  "name": "f-plasm",
   "description": "JavaScript functional PLaSM",
   "maintainers": [ 
     {
@@ -12,10 +12,10 @@
     }
   ],
   "version": "0.2.0",
-  "homepage": "https://github.com/cvdlab/plasm-fun",
+  "homepage": "https://github.com/cvdlab/f-plasm",
   "repository": {
     "type": "git",
-    "url": "git://github.com/cvdlab/plasm-fun.git"
+    "url": "git://github.com/cvdlab/f-plasm.git"
   },
   "main": "index.js",
   "engines": {
