@@ -1,0 +1,26 @@
+{
+  "name": "f-plasm",
+  "description": "plasm functional layer",
+  "maintainers": [ 
+    {
+      "name": "Enrico Marino",
+      "email": "enrico.marino@email.com"
+    },
+    {
+      "name": "Federico Spini",
+      "email": "federico.spini@gmail.com"
+    }
+  ],
+  "version": "0.2.0",
+  "homepage": "https://github.com/cvdlab/simplexn",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cvdlab/simplexn.git"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
