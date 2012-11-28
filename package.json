@@ -1,6 +1,6 @@
 {
   "name": "f-plasm",
-  "description": "plasm functional layer",
+  "description": "JavaScript functional PLaSM",
   "maintainers": [ 
     {
       "name": "Enrico Marino",
@@ -12,10 +12,10 @@
     }
   ],
   "version": "0.2.0",
-  "homepage": "https://github.com/cvdlab/simplexn",
+  "homepage": "https://github.com/cvdlab/f-plasm",
   "repository": {
     "type": "git",
-    "url": "git://github.com/cvdlab/simplexn.git"
+    "url": "git://github.com/cvdlab/f-plasm.git"
   },
   "main": "index.js",
   "engines": {
