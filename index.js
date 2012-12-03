@@ -1,5 +1,5 @@
 /* !
- * f-plasm
+ * plasm-fun
  * functional plasm
  * Copyright (c) 2012 Enrico Marino and Federico Spini
  * MIT License

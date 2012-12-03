@@ -1,7 +1,7 @@
 {
   "name": "plasm-fun",
   "repo": "cvdlab/plasm-fun",
-  "description": "JavaScript functional PLaSM",
+  "description": "PLaSM functional library",
   "version": "0.0.1",
   "keywords": [
     "functional",
@@ -11,7 +11,7 @@
     "index.js"
   ],
   "dependencies": {
-
-    },
+    "cvdlab/plasm": "*"
+  },
   "license": "MIT"
 }

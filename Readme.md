@@ -1,6 +1,6 @@
-# f-plasm
+# plasm-fun
 
-functional plasm
+PLaSM functional library
 
 ## License
 

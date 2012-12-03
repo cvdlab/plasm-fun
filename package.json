@@ -1,6 +1,7 @@
 {
-  "name": "f-plasm",
-  "description": "JavaScript functional PLaSM",
+  "name": "plasm-plasm",
+  "description": "PLaSM functional library",
+  "version": "0.2.0",
   "maintainers": [ 
     {
       "name": "Enrico Marino",
@@ -11,11 +12,10 @@
       "email": "federico.spini@gmail.com"
     }
   ],
-  "version": "0.2.0",
-  "homepage": "https://github.com/cvdlab/f-plasm",
+  "homepage": "https://github.com/cvdlab/plasm-fun",
   "repository": {
     "type": "git",
-    "url": "git://github.com/cvdlab/f-plasm.git"
+    "url": "git://github.com/cvdlab/plasm-fun.git"
   },
   "main": "index.js",
   "engines": {
