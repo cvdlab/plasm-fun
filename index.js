@@ -1,8 +1,9 @@
-/* !
+/**!
  * plasm-fun
  * functional plasm
- * Copyright (c) 2012 Enrico Marino and Federico Spini
- * MIT License
+ * 
+ * @copyright 2013 Enrico Marino and Federico Spini
+ * @license MIT
  */
 
 /**
@@ -17,26 +18,37 @@ var plasm = require('plasm');
 
 exports.version = '0.2.0';
 
+/**
+ * VIEWER
+ * 
+ * Instance of the PLaSM Viewer to use
+ * It is a dependency injection variable
+ * 
+ * @api public
+ */
+
+var VIEWER =
+exports.VIEWER = undefined;
 
 /**
  * DRAW
  * 
- * @param {plasm.Model|plasm.Struct} object
- * @return {Function} 
- *   @param {Plasm.Viewer} viewer viewer where to draw object
- *   @return {plasm.Model|plasm.Struct} object
+ * @param {plasm.Model|plasm.Struct} object to draw
  * @api public
  */
 
 exports.DRAW = function (object) {
   if (!(object instanceof plasm.Model) &&
       !(object instanceof plasm.Struct)) {
-    return function () {};
+    return;
+  }
+  if (VIEWER === undefined) {
+    return;
   }
 
-  return function (viewer) {
-    object.draw(viewer);
-  };
+  object.draw(VIEWER);
+
+  return object;
 };
 
 /**
