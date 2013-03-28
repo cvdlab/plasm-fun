@@ -13,22 +13,21 @@
 var plasm = require('plasm');
 
 /**
- * Library version.
+ * Expose `fun`
  */
 
-exports.version = '0.2.0';
+module.exports = fun;
 
 /**
- * VIEWER
- * 
- * Instance of the PLaSM Viewer to use
- * It is a dependency injection variable
+ * fun
  * 
  * @api public
  */
 
-var VIEWER =
-exports.VIEWER = undefined;
+function fun (id) {
+  fun.plasm = plasm;
+  fun.viewer = plasm.Viewer(id);
+}
 
 /**
  * DRAW
@@ -37,16 +36,13 @@ exports.VIEWER = undefined;
  * @api public
  */
 
-exports.DRAW = function (object) {
+fun.DRAW = function (object) {
   if (!(object instanceof plasm.Model) &&
       !(object instanceof plasm.Struct)) {
     return;
   }
-  if (VIEWER === undefined) {
-    return;
-  }
 
-  object.draw(VIEWER);
+  object.draw(fun.viewer);
 
   return object;
 };
@@ -59,7 +55,7 @@ exports.DRAW = function (object) {
  * @api public
  */
 
-exports.CANCEL = function (object) {
+fun.CANCEL = function (object) {
   if (!(object instanceof plasm.Model) &&
       !(object instanceof plasm.Struct)) {
     return;
@@ -78,7 +74,7 @@ exports.CANCEL = function (object) {
  */
 
 var K = 
-exports.K = function (constObject) {
+fun.K = function (constObject) {
   return function () {
     return constObject;
   };
@@ -97,8 +93,8 @@ exports.K = function (constObject) {
  */
 
 var R = 
-exports.R = 
-exports.ROTATE = function (dims) {
+fun.R = 
+fun.ROTATE = function (dims) {
   return function (angle) {
     return function (object) {
       return object.clone().rotate(dims, angle);
@@ -119,8 +115,8 @@ exports.ROTATE = function (dims) {
  */
 
 var S = 
-exports.S = 
-exports.SCALE = function (dims) {
+fun.S = 
+fun.SCALE = function (dims) {
   return function (values) {
     return function (object) {
       return object.clone().scale(dims, values);
@@ -141,8 +137,8 @@ exports.SCALE = function (dims) {
  */
 
 var T =
-exports.T =
-exports.TRANSLATE = function (dims) {
+fun.T =
+fun.TRANSLATE = function (dims) {
   return function (values) {
     return function (object) {
      return object.clone().translate(dims, values);
@@ -158,7 +154,7 @@ exports.TRANSLATE = function (dims) {
  * @api public
  */
 
-exports.STRUCT = function (items) {
+fun.STRUCT = function (items) {
   var transformations = function (o) {return o;};
   var objects = [];
 
@@ -206,7 +202,7 @@ exports.STRUCT = function (items) {
  * @api public
  */
 
-exports.MAP = function (mapping) {
+fun.MAP = function (mapping) {
   return function (domain) {
     return domain.map(mapping);
   };
@@ -224,7 +220,7 @@ exports.MAP = function (mapping) {
  */
 
 var EXTRUDE =
-exports.EXTRUDE = function (hlist) {
+fun.EXTRUDE = function (hlist) {
   return function (object) {
     return object.extrude(hlist);
   };
@@ -241,7 +237,7 @@ exports.EXTRUDE = function (hlist) {
  */
 
 var EXPLODE =
-exports.EXPLODE = function (values) {
+fun.EXPLODE = function (values) {
   return function (model) {
     return model.explode(values);
   };
@@ -258,7 +254,7 @@ exports.EXPLODE = function (values) {
  */
 
 var SKELETON = 
-exports.SKELETON = function (dim) {
+fun.SKELETON = function (dim) {
   return function (model) {
     return model.skeleton(dim);
   };
@@ -273,7 +269,7 @@ exports.SKELETON = function (dim) {
  */
 
 var BOUNDARY = 
-exports.BOUNDARY = function (model) {
+fun.BOUNDARY = function (model) {
   return model.boundary();
 };
 
@@ -294,7 +290,7 @@ exports.BOUNDARY = function (model) {
  */
 
 var COLOR =
-exports.COLOR = function (rgba) {
+fun.COLOR = function (rgba) {
   return function (object) {
     return object.clone().color(rgba);
   };
@@ -309,7 +305,7 @@ exports.COLOR = function (rgba) {
  */
 
 var SHOW = 
-exports.SHOW = function (object) {
+fun.SHOW = function (object) {
   object.show();
 };
 
@@ -321,7 +317,7 @@ exports.SHOW = function (object) {
  */
 
 var HIDE = 
-exports.HIDE = function (object) {
+fun.HIDE = function (object) {
   object.hide();
 };
 
@@ -336,7 +332,7 @@ exports.HIDE = function (object) {
  */
 
 var SIMPLICIAL_COMPLEX = 
-exports.SIMPLICIAL_COMPLEX = function (points) {
+fun.SIMPLICIAL_COMPLEX = function (points) {
   return function (cells) {
     return plasm.SimplicialComplex(points, cells);
   };
@@ -351,7 +347,7 @@ exports.SIMPLICIAL_COMPLEX = function (points) {
  */
 
 var SIMPLEX =
-exports.SIMPLEX = function (d) {
+fun.SIMPLEX = function (d) {
   return plasm.geometries.simplex(d);
 };
 
@@ -364,7 +360,7 @@ exports.SIMPLEX = function (d) {
  */
 
 var POLYLINE = 
-exports.POLYLINE = function (points) {
+fun.POLYLINE = function (points) {
   return plasm.geometries.polyline(points);
 };
 
@@ -377,7 +373,7 @@ exports.POLYLINE = function (points) {
  */
 
 var POLYPOINT =
-exports.POLYPOINT = function (points) {
+fun.POLYPOINT = function (points) {
   return plasm.geometries.polypoint(points);
 };
 
@@ -391,7 +387,7 @@ exports.POLYPOINT = function (points) {
  */
 
 var SIMPLEX_GRID = 
-exports.SIMPLEX_GRID = function (quotes) {
+fun.SIMPLEX_GRID = function (quotes) {
   return plasm.geometries.simplexGrid(quotes);
 };
 
@@ -404,7 +400,7 @@ exports.SIMPLEX_GRID = function (quotes) {
  */
 
 var CUBE = 
-exports.CUBE = function (d) {
+fun.CUBE = function (d) {
   return plasm.geometries.cube(d);
 };
 
@@ -417,7 +413,7 @@ exports.CUBE = function (d) {
  */
 
 var CUBOID =
-exports.CUBOID = function (sides) {
+fun.CUBOID = function (sides) {
   return plasm.geometries.cuboid(sides);
 };
 
@@ -432,7 +428,7 @@ exports.CUBOID = function (sides) {
  */
 
 var INTERVALS = 
-exports.INTERVALS = function (tip) {
+fun.INTERVALS = function (tip) {
   return function (n) {
     return plasm.geometries.intervals(tip, n);
   };
@@ -450,7 +446,7 @@ exports.INTERVALS = function (tip) {
  */
 
 var DOMAIN = 
-exports.DOMAIN = function (ends) {
+fun.DOMAIN = function (ends) {
   return function (ns) {
     return plasm.geometries.domain(ends, ns);
   };
@@ -467,17 +463,17 @@ exports.DOMAIN = function (ends) {
  */
 
 var PROD1x1 = 
-exports.PROD1x1 = function (array) {
+fun.PROD1x1 = function (array) {
   return array[0].prod1x1(array[1]);
 };
 
 var PROD1x2 = 
-exports.PROD1x2 = function (array) {
+fun.PROD1x2 = function (array) {
   return array[0].prod1x2(array[1]);
 };
 
 var PROD2x1 = 
-exports.PROD2x1 = function (array) {
+fun.PROD2x1 = function (array) {
   return array[0].prod2x1(array[1]);
 };  
 
@@ -492,7 +488,7 @@ exports.PROD2x1 = function (array) {
  */
 
 var CIRCLE = 
-exports.CIRCLE = function (r) {
+fun.CIRCLE = function (r) {
   var r = r || 1;
   return function (n) {
     return plasm.geometries.circle(r, n);
@@ -512,7 +508,7 @@ exports.CIRCLE = function (r) {
  */
 
 var DISK = 
-exports.DISK = function (r) {
+fun.DISK = function (r) {
   var r = r || 1;
   return function (divs) {
     var divs = divs || [];
@@ -537,7 +533,7 @@ exports.DISK = function (r) {
  */
 
 var CYL_SURFACE = 
-exports.CYL_SURFACE = function (dims) {
+fun.CYL_SURFACE = function (dims) {
   var dims = dims || [];
   var r = dims[0] || 1;
   var h = dims[1] || 1;
@@ -564,7 +560,7 @@ exports.CYL_SURFACE = function (dims) {
  */
 
 var TORUS_SURFACE = 
-exports.TORUS_SURFACE = function (dims) {
+fun.TORUS_SURFACE = function (dims) {
   var dims = dims || [];
   var r_min = dims[0] || 1.0;
   var r_max = dims[1] || 1.9;
@@ -592,7 +588,7 @@ exports.TORUS_SURFACE = function (dims) {
  */
 
 var TORUS_SOLID = 
-exports.TORUS_SOLID = function (dims) {
+fun.TORUS_SOLID = function (dims) {
   var dims = dims || [];
   var r_min = dims[0] || 0.1;
   var r_max = dims[1] || 0.9;
@@ -614,7 +610,7 @@ exports.TORUS_SOLID = function (dims) {
  */
 
 var TRIANGLE_STRIP = 
-exports.TRIANGLE_STRIP = function (points) {
+fun.TRIANGLE_STRIP = function (points) {
   return plasm.geometries.triangleStrip(points);
 };
 
@@ -627,7 +623,7 @@ exports.TRIANGLE_STRIP = function (points) {
  */
 
 var TRIANGLE_FAN = 
-exports.TRIANGLE_FAN = function (points) {
+fun.TRIANGLE_FAN = function (points) {
   return plasm.geometries.triangleFan(points);
 };
 
@@ -643,7 +639,7 @@ exports.TRIANGLE_FAN = function (points) {
  */
 
 var HELIX = 
-exports.HELIX = function (r, pitch, n, turns) {
+fun.HELIX = function (r, pitch, n, turns) {
   return plasm.geometries.helix(r, pitch, n, turns);
 };
 
@@ -660,7 +656,7 @@ exports.HELIX = function (r, pitch, n, turns) {
  */
 
 var CUBIC_HERMIT = 
-exports.CUBIC_HERMITE = function (sel) {
+fun.CUBIC_HERMITE = function (sel) {
   return function (args) {
     var p1Fn = args[0];
     var p2Fn = args[1];
@@ -703,7 +699,7 @@ exports.CUBIC_HERMITE = function (sel) {
  */
 
 var BEZIER = 
-exports.BEZIER = function (sel) {  
+fun.BEZIER = function (sel) {  
   return function (args) {
     var n = args.length - 1;
     var controldataFn = args;
@@ -751,7 +747,7 @@ exports.BEZIER = function (sel) {
  */
 
 var CUBIC_UBSPLINE = 
-exports.CUBIC_UBSPLINE = function (domain) {
+fun.CUBIC_UBSPLINE = function (domain) {
   return function (args) {
     var q1Fn = args[0];
     var q2Fn = args[1];
@@ -794,7 +790,7 @@ exports.CUBIC_UBSPLINE = function (domain) {
  */
 
 var CUBIC_CARDINAL =
-exports.CUBIC_CARDINAL = function (domain, h) {
+fun.CUBIC_CARDINAL = function (domain, h) {
   var h = h !== undefined ? h : 1;
 
   return function (args) {
@@ -839,7 +835,7 @@ exports.CUBIC_CARDINAL = function (domain, h) {
  */
 
 var SPLINE =
-exports.SPLINE = function (curve) {
+fun.SPLINE = function (curve) {
   return function (points) {
     var segments = [];
     var length = points.length;
@@ -862,7 +858,9 @@ exports.SPLINE = function (curve) {
  *
  * @api private
  */
-var DE_BOORD = function (T, i, k, t, n) {
+ 
+var DE_BOORD = 
+fun.DE_BOORD = function (T, i, k, t, n) {
   var tmin = T[k-1];
   var tmax = T[n+1];
   var ret, num1, div1, num2, div2;
@@ -894,7 +892,7 @@ var DE_BOORD = function (T, i, k, t, n) {
   }
 
   return ret;
-}
+};
 
 /**
  * BSPLINE
@@ -909,7 +907,7 @@ var DE_BOORD = function (T, i, k, t, n) {
  */
 
 var BSPLINE =
-exports.BSPLINE = function (degree) {
+fun.BSPLINE = function (degree) {
   return function (knots) {
     return function (controls) {
       var n = controls.length - 1;
@@ -969,7 +967,7 @@ exports.BSPLINE = function (degree) {
  */
 
 var NUBSPLINE =
-exports.NUBSPLINE = function (degree, totpoints) {
+fun.NUBSPLINE = function (degree, totpoints) {
   var totpoints = totpoints !== undefined ? totpoints : 80;
   
   return function (knots) {
@@ -1010,7 +1008,7 @@ exports.NUBSPLINE = function (degree, totpoints) {
  */
 
 var NUBS =
-exports.NUBS = function (sel) {
+fun.NUBS = function (sel) {
   return function (degree) {
     return function (knots) {
       return function (controls) {
@@ -1079,7 +1077,7 @@ exports.NUBS = function (sel) {
  */
 
 var RATIONAL_BSPLINE =
-exports.RATIONAL_BSPLINE = function (degree) {
+fun.RATIONAL_BSPLINE = function (degree) {
   return function (knots) {
     return function (controls) {
       var bspline = BSPLINE(degree)(knots)(controls);
@@ -1115,7 +1113,7 @@ exports.RATIONAL_BSPLINE = function (degree) {
  */
 
 var NURBSPLINE =
-exports.NURBSPLINE = function (degree, totpoints) {
+fun.NURBSPLINE = function (degree, totpoints) {
   var totpoints = totpoints !== undefined ? totpoints : 80;
 
   return function (knots) {
@@ -1158,7 +1156,7 @@ exports.NURBSPLINE = function (degree, totpoints) {
  */
 
 var ROTATIONAL_SURFACE =
-exports.ROTATIONAL_SURFACE = function (profile) {
+fun.ROTATIONAL_SURFACE = function (profile) {
   return function (point) {
     var u = point[0];
     var v = point[1];
@@ -1182,7 +1180,7 @@ exports.ROTATIONAL_SURFACE = function (profile) {
  */
 
 var COONS_PATCH = 
-exports.COONS_PATCH = function (args) {
+fun.COONS_PATCH = function (args) {
   var su0Fn = args[0];
   var su1Fn = args[1];
   var s0vFn = args[2];
@@ -1239,9 +1237,9 @@ exports.COONS_PATCH = function (args) {
  */
 
 var PROFILEPROD_SURFACE =
-exports.PROFILEPROD_SURFACE = function (profiles) {
-var alfaProfile = profiles[0];
-var betaSection = profiles[1];
+fun.PROFILEPROD_SURFACE = function (profiles) {
+  var alfaProfile = profiles[0];
+  var betaSection = profiles[1];
   return function (point) {
   // Profilo di ALFA
     var pAlfa = alfaProfile(point);
@@ -1278,19 +1276,19 @@ var betaSection = profiles[1];
  */
 
 var RULED_SURFACE =
-exports.RULED_SURFACE = function (arrayFuns) {
-var alfaFun = arrayFuns[0];
-var betaFun = arrayFuns[1];
+fun.RULED_SURFACE = function (arrayFuns) {
+  var alfaFun = arrayFuns[0];
+  var betaFun = arrayFuns[1];
   return function (point) {
-  var v = point[1];
-  // Generate ALFA points
-    var pAlfa = alfaFun(point);
-  // Generate BETA points
-  var sBeta = betaFun(point);
-  // Return
-    var ret = [];
-  pAlfa.forEach(function(item,index) { ret.push( pAlfa[index] + v*sBeta[index] ); } );
-    return ret;
+    var v = point[1];
+    // Generate ALFA points
+      var pAlfa = alfaFun(point);
+    // Generate BETA points
+    var sBeta = betaFun(point);
+    // Return
+      var ret = [];
+    pAlfa.forEach(function(item,index) { ret.push( pAlfa[index] + v*sBeta[index] ); } );
+      return ret;
   };
 };
 
@@ -1313,14 +1311,16 @@ var betaFun = arrayFuns[1];
  */
 
 var CONICAL_SURFACE =
-exports.CONICAL_SURFACE = function (apex) {
+fun.CONICAL_SURFACE = function (apex) {
   return function(profile) {
     var apexFun = K(apex);
     var profileDiff = function(apexData, profileFunction) {
       return function(point) {
         var newPoint = [];
         var profilePt = profileFunction(point);
-        profilePt.forEach(function(item,index) { newPoint.push( profilePt[index] - apexData[index] ); } );
+        profilePt.forEach(function(item,index) { 
+          newPoint.push( profilePt[index] - apexData[index] ); 
+        });
         return newPoint;
       };
     };
@@ -1348,7 +1348,7 @@ exports.CONICAL_SURFACE = function (apex) {
  */
 
 var CYLINDRICAL_SURFACE = 
-exports.CYLINDRICAL_SURFACE = function (profile) {
+fun.CYLINDRICAL_SURFACE = function (profile) {
   return function(vector) {
     return RULED_SURFACE([ profile, CONS(AA(K)(vector)) ]);
   };
@@ -1363,7 +1363,7 @@ exports.CYLINDRICAL_SURFACE = function (profile) {
  */
 
 var TRIANGLE_DOMAIN = 
-exports.TRIANGLE_DOMAIN = function (n, points) {
+fun.TRIANGLE_DOMAIN = function (n, points) {
   return exports.triangleDomain(n, points);
 };
 
@@ -1378,7 +1378,7 @@ exports.TRIANGLE_DOMAIN = function (n, points) {
  */
 
 var TRIANGULAR_COONS_PATCH = 
-exports.TRIANGULAR_COONS_PATCH = function (args) {
+fun.TRIANGULAR_COONS_PATCH = function (args) {
   var ab0Fn = args[0];
   var bc1Fn = args[1];
   var ca0Fn = args[2];
