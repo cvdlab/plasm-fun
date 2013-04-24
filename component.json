@@ -2,16 +2,12 @@
   "name": "plasm-fun",
   "repo": "cvdlab/plasm-fun",
   "description": "PLaSM functional library",
-  "version": "0.0.1",
-  "keywords": [
-    "functional",
-    "PLaSM"
-  ],
-  "scripts": [
-    "index.js"
-  ],
   "dependencies": {
-    "cvdlab/plasm": "*"
+    "cvdlab/plasm": "*",
+    "enricomarino/globalize": "*"
   },
+  "version": "0.1.0",
+  "keywords": ["functional", "PLaSM"],
+  "scripts": ["index.js"],
   "license": "MIT"
 }
