@@ -11,6 +11,7 @@
  */
 
 var plasm = require('plasm');
+var globalize = require('globalize');
 
 /**
  * Expose `fun`
@@ -21,13 +22,28 @@ module.exports = fun;
 /**
  * fun
  * 
+ * @return {Function} fun
  * @api public
  */
 
 function fun (id) {
   fun.plasm = plasm;
   fun.viewer = plasm.Viewer(id);
+  return fun;
 }
+
+/**
+ * globalize
+ * Globalize fun functions
+ * 
+ * @return {function} fun
+ * @api public
+ */
+
+fun.globalize = function () {
+  globalize(fun);
+  return fun;
+};
 
 /**
  * DRAW
