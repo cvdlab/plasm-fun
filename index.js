@@ -10,6 +10,7 @@
  * Library dependencies.
  */
 
+var f = require('f');
 var plasm = require('plasm');
 var globalize = require('globalize');
 
@@ -27,6 +28,9 @@ module.exports = fun;
  */
 
 function fun (id) {
+  for (var p in f) {
+    fun[p] = f[p];
+  }
   fun.plasm = plasm;
   fun.viewer = plasm.Viewer(id);
   return fun;
