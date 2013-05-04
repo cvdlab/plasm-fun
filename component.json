@@ -3,6 +3,7 @@
   "repo": "cvdlab/plasm-fun",
   "description": "PLaSM functional library",
   "dependencies": {
+    "cvdlab/f": "*",
     "cvdlab/plasm": "*",
     "enricomarino/globalize": "*"
   },
