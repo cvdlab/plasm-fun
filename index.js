@@ -29,7 +29,7 @@ module.exports = fun;
 
 function fun (id) {
   for (var p in f) {
-    fun[p] = f[p];
+    fun[p.toUpperCase()] = f[p];
   }
   fun.plasm = plasm;
   fun.viewer = plasm.Viewer(id);
