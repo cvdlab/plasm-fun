@@ -675,7 +675,7 @@ fun.HELIX = function (r, pitch, n, turns) {
  * @api public
  */
 
-var CUBIC_HERMIT = 
+var CUBIC_HERMITE = 
 fun.CUBIC_HERMITE = function (sel) {
   return function (args) {
     var p1Fn = args[0];
