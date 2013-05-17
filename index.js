@@ -1384,7 +1384,7 @@ fun.CYLINDRICAL_SURFACE = function (profile) {
 
 var TRIANGLE_DOMAIN = 
 fun.TRIANGLE_DOMAIN = function (n, points) {
-  return exports.triangleDomain(n, points);
+  return plasm.geometries.triangleDomain(n, points);
 };
 
 /**
