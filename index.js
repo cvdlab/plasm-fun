@@ -1427,3 +1427,126 @@ fun.TRIANGULAR_COONS_PATCH = function (args) {
 
   };
 };
+
+/**
+ * INTERP_P2P (interpolation point to point)
+ * INTERP_P2C (interpolation point to curve)
+ * INTERP_P2S (interpolation point to surface)
+ * INTERP_C2C (interpolation curve to curve) 
+ * INTERP_C2S (interpolation curve to surface)
+ * INTERP_S2S (interpolation surface to surface)
+ * 
+ * @param {Function} sel
+ * @return {Function}
+ *   @param {Array} args
+ *   @return {Function}
+ *     @param {Array} point
+ *     @return {Function}
+ * @api public
+ * 
+ */
+ 
+var INTERP_P2P = function (sel) {
+    return function (args) { 
+        var P1 = args[0];
+        var P2 = args[1];
+
+        return function (point) {
+            u = sel(point);
+
+      var mapped = new Array(3);
+	    var i;
+	    for (i = 0; i < 3; i += 1) { mapped[i] = P1[i] + u * (P2[i] - P1[i]);}
+	    return mapped;
+        };
+    };
+};
+
+var INTERP_P2C = function (sel) {
+    return function (args) { 
+        var P1 = args[0];
+        var C1 = args[1];
+
+        return function (point) {
+            v = sel(point);
+            var C1u = C1(point);
+
+	    var mapped = new Array(3);
+	    var i;
+	    for (i = 0; i < 3; i += 1) { mapped[i] = P1[i] + v * (C1u[i] - P1[i]);}
+	    return mapped;
+        };
+    };
+};
+
+var INTERP_P2S = function (sel) {
+    return function (args) { 
+        var P1 = args[0];
+        var S1 = args[1];
+
+        return function (point) {
+            z = sel(point);
+            var S1uv = S1(point);
+
+      var mapped = new Array(3);
+	    var i;
+	    for (i = 0; i < 3; i += 1) { mapped[i] = P1[i] + z * (S1uv[i] - P1[i]);}
+	    return mapped;
+        };
+    };
+};
+
+var INTERP_C2C = function (sel) {
+    return function (args) { 
+        var C1 = args[0];
+        var C2 = args[1];
+
+        return function (point) {
+            v = sel(point);
+            var C1u = C1(point);
+            var C2u = C2(point);
+
+	    var mapped = new Array(3);
+	    var i;
+	    for (i = 0; i < 3; i += 1) { mapped[i] = C2u[i] + v * (C1u[i] - C2u[i]);}
+	    return mapped;
+        };
+    };
+};
+
+var INTERP_C2S = function (sel) {
+    return function (args) { 
+        var C1 = args[0];
+        var S1 = args[1];
+
+        return function (point) {
+            z = sel(point);
+            var C1u = C1(point);
+            var S1uv = S1(point);
+
+	    var mapped = new Array(3);
+	    var i;
+	    for (i = 0; i < 3; i += 1) { mapped[i] = C1u[i] + z * (S1uv[i] - C1u[i]);}
+	    return mapped;
+        };
+    };
+};
+
+var INTERP_S2S = function (sel) {
+    return function (args) { 
+        var S1 = args[0];
+        var S2 = args[1];
+
+        return function (point) {
+            z = sel(point);
+            var S1uv = S1(point);
+            var S2uv = S2(point);
+
+	    var mapped = new Array(3);
+	    var i;
+	    for (i = 0; i < 3; i += 1) { mapped[i] = S1uv[i] + z * (S2uv[i] - S1uv[i]);}
+	    return mapped;
+        };
+    };
+};
+
