@@ -185,12 +185,12 @@ fun.STRUCT = function (items) {
         !(item instanceof plasm.Struct)) {
       transformations = COMP2([transformations, item]);
     } else {
-      temexports.push(APPLY([transformations, item]).clone());
+      temp.push(APPLY([transformations, item]).clone());
       objects.push(APPLY([transformations, item]));
     }
   });
 
-  return new plasm.Struct(objects, p);
+  return new plasm.Struct(objects, temp);
 };
 
 /**
