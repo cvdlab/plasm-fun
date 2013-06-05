@@ -1207,8 +1207,8 @@ fun.COONS_PATCH = function (args) {
   var s1vFn = args[3];
 
   return function (point) {
-    u = point[0];
-    v = point[1];
+    var u = point[0];
+    var v = point[1];
 
     var s00 = su0Fn([0,0]);
     var s01 = s0vFn([0,1]);
@@ -1404,9 +1404,9 @@ fun.TRIANGULAR_COONS_PATCH = function (args) {
   var ca0Fn = args[2];
 
   return function (point) {
-    u = point[0];
-    v = point[1];
-    w = point[2];
+    var u = point[0];
+    var v = point[1];
+    var w = point[2];
 
     var Sab0 = ab0Fn instanceof Function ? ab0Fn(point) : ab0Fn;
     var Sbc1 = bc1Fn instanceof Function ? bc1Fn(point) : bc1Fn;
@@ -1453,7 +1453,7 @@ fun.INTERP_P2P = function (sel) {
         var P2 = args[1];
 
         return function (point) {
-            u = sel(point);
+            var u = sel(point);
 
       var mapped = new Array(3);
 var i;
@@ -1470,7 +1470,7 @@ fun.INTERP_P2C = function (sel) {
         var C1 = args[1];
 
         return function (point) {
-            v = sel(point);
+            var v = sel(point);
             var C1u = C1(point);
 
 var mapped = new Array(3);
@@ -1488,7 +1488,7 @@ fun.INTERP_P2S = function (sel) {
         var S1 = args[1];
 
         return function (point) {
-            z = sel(point);
+            var z = sel(point);
             var S1uv = S1(point);
 
       var mapped = new Array(3);
@@ -1506,7 +1506,7 @@ fun.INTERP_C2C = function (sel) {
         var C2 = args[1];
 
         return function (point) {
-            v = sel(point);
+            var v = sel(point);
             var C1u = C1(point);
             var C2u = C2(point);
 
@@ -1525,7 +1525,7 @@ fun.INTERP_C2S = function (sel) {
         var S1 = args[1];
 
         return function (point) {
-            z = sel(point);
+            var z = sel(point);
             var C1u = C1(point);
             var S1uv = S1(point);
 
@@ -1544,7 +1544,7 @@ fun.INTERP_S2S = function (sel) {
         var S2 = args[1];
 
         return function (point) {
-            z = sel(point);
+            var z = sel(point);
             var S1uv = S1(point);
             var S2uv = S2(point);
 
