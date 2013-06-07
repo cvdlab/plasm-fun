@@ -177,20 +177,20 @@ fun.TRANSLATE = function (dims) {
 fun.STRUCT = function (items) {
   var transformations = function (o) {return o;};
   var objects = [];
-
-  var temp = [];
+  // var temp = [];
 
   items.forEach(function (item) {
     if (!(item instanceof plasm.Model) && 
         !(item instanceof plasm.Struct)) {
       transformations = COMP2([transformations, item]);
     } else {
-      temp.push(APPLY([transformations, item]).clone());
+    //  temp.push(APPLY([transformations, item]).clone());
       objects.push(APPLY([transformations, item]));
     }
   });
 
-  return new plasm.Struct(objects, temp);
+//  return new plasm.Struct(objects, temp);
+    return new plasm.Struct(objects);
 };
 
 /**
