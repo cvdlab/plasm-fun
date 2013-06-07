@@ -178,7 +178,7 @@ fun.STRUCT = function (items) {
   var transformations = function (o) {return o;};
   var objects = [];
 
-  temp = [];
+  var temp = [];
 
   items.forEach(function (item) {
     if (!(item instanceof plasm.Model) && 
